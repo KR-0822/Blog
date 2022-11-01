@@ -13,6 +13,31 @@
   }
 }
 
+.title {
+  display: flex;
+  
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  font-size: 2vmin ;
+  margin-left: 10px;
+
+}
+
+.t_head{
+  font-size: 2vmin;
+  font-weight: bold;
+}
+
+.t_tail{
+  margin-top: 20px;
+  
+}
+
+hr{
+  width : 50%;
+
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
