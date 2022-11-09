@@ -7,7 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState} from "react";
+import {useRef,useState} from "react";
+
 
 
 const PostModal = (props) => {
@@ -32,17 +33,18 @@ const PostTitle = () => {
 
 };
 
-const PostCard = (props, {user, onRemove}) => {
+const PostCard = (props, {title, onRemove}) => {
   return (
       <section>
           <h2 className="t_head">{props.title}</h2>
           <p className="t_tail">{props.content}</p>
-          <button onClick={() => onRemove(user.id)}>삭제</button>
+          <button onClick={() => onRemove(title)}>삭제</button>
       </section>
 
   )
 
 }
+
 
 function App() {
   // const title = ["2월 17일 발행", "남자 코트 추천", "강남 우동맛집" , "파이썬 독학"];
@@ -53,15 +55,17 @@ function App() {
       titleList.push(newTitle);
       setTitle( titleList );
   }
-  function deleteTitle(){
-    let titleList = [...title];
-    titleList.pop(newTitle);
+
+  function deleteTitle(targetId){
+    const titleList = title.filter((it) => it.id !== targetId);
     setTitle( titleList );
 }
   const [contents, setContents] = useState(["본문1", "본문2", "본문3", "2월 17일 발행" ]);
   const [modal, setModal] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-
+  const onRemove = (index) => {
+    setTitle(title.filter(title => title.index !== index))
+  }
   
   return (
     <>
